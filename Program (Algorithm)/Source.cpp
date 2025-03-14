@@ -2,47 +2,47 @@
 
 using namespace std;
 
+#define SIZE 5
+
 int main()
 {
-#pragma region 완전 탐색
-	// 가능한 모든 경우의 수를 탐색하면서
-	// 결과를 찾아내는 알고리즘입니다.
+#pragma region 삽입 정렬
+	// 데이터를 하나씩 확인하면서 이미 정렬된 부분과 비교하여
+	// 자신의 위치를 찾아 삽입하는 방식으로 정렬하는 알고리즘 입니다.
+
+	// key 라는변수 
+	// key는 처음인덱스값이아닌 그다음번째 인덱스값을넣어야한다
+
+	// 그리고 0번째인덱스와 값을비교한다
+	// 2번의 값보다 1번의값이크다면 1번의값을 2번에 삽입한다.
+
+	// 그리고 키값을 인덱스 1번에 삽입한다.
+
+	int list[SIZE] = { 9,6,8,1,3 };
+
+	int key = 0;
+
+	for (int i =0; i<SIZE; i++)
+	{
+		for (int j = 0; j < SIZE; j++)
+		{
+			
+			if (list[j]<key)
+			{
+				list[j + 1] = list[j];
+			}
+
+			key = list[j + 1];
+		}
+	}
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << list[i] << " ";
+	}
+
 #pragma endregion
 
-	// int input[3];
-	// int password[3] = { 7,1,2 };
-	// 
-	// for (int i = 0; i < 3; i++)
-	// {
-	// 	cout << "3자리의 비밀번호를 입력해주세요. : ";
-	// 	cin >> input[i];
-	// }
-	// if (input[0] == password[0] && input[1] == password[1] && input[2] == password[2])
-	// {
-	// 	cout << "비밀번호가 일치합니다." << endl;
-	// }
-	// else
-	// {
-	// 	cout << "틀린 비밀번호 입니다." << endl;
-	// }
-	// 강사님이 만든 예제 (브루트 포스)
-	// int password[] = { 7,1,2 };
-	// 
-	// for (int i = 0; i < 10; i++)
-	// {
-	// 	for (int j = 0; j< 10; j++)
-	// 	{
-	// 		for (int k = 0; k < 10; k++)
-	// 		{
-	// 			if (password[0] == i && password[1] == j && password[2] ==k)
-	// 			{
-	// 				cout << "Password Release : " << i << " " << j << " " << k << endl;
-	// 
-	// 				break;
-	// 			}
-	// 		}
-	// 	}
-	// }
 	return 0;
 }
 
