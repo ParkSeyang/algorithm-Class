@@ -22,18 +22,22 @@ int main()
 
 	int key = 0;
 
-	for (int i =0; i<SIZE; i++)
+	for (int i =0; i < SIZE - 1; i++)
 	{
-		for (int j = 0; j < SIZE; j++)
+		key = list[i + 1]; // key는 다음 값을 가리킨다
+		for (int j = 0; j < i + 1; j++)
 		{
-			
-			if (list[j]<key)
+			if (list[i-j] > list[i-j+1]) // 키값과 키의다음값을 비교하고 키값보다 클경우 다음칸으로 밀어낸다
 			{
-				list[j + 1] = list[j];
+				list[i - j + 1] = list[i - j];
+				list[i - j] = key;
 			}
-
-			key = list[j + 1];
+			else if (list[i - j] < list[i - j + 1]) // 만약 그전값이 키값보다 크다면 다음 값을 비교하도록 한다.
+			{
+				continue;
+			}
 		}
+
 	}
 
 	for (int i = 0; i < SIZE; i++)
