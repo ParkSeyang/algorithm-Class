@@ -1,53 +1,78 @@
 ﻿#include <iostream>
 
-#define SIZE 8
+#define SIZE 6
 
 using namespace std;
 
-void binarySerach(int list[], int key)
+void QuickSort(int list[], int start, int end)
 {
-	int left = 0;
-	int right = SIZE - 1;
-	
-	
+	// 1. pivot 변수 의 값을 설정합니다.
+	int pivot = start;
+	// 2. left 변수의 값을 설정합니다.
+	int left = start +1;
+	// 3. right 변수의 값을 설정합니다.
+	int right = end;
+
+	// 4. left가 right보다 크거나 같을때 까지 반복합니다.
 	while (left <= right)
 	{
-		int mid = (left + right) / 2; // 중간값
-
-		if (list[mid] == key) // 찾는 키값과 중간 값이 같을경우
+		// 5. left가 end 보다 작거나 같고 list[left]가
+		// list[pivot] 보다 작거나 같을 때 까지 반복합니다.
+		while (left <= end && list[pivot] >= list[left])
 		{
-			cout << "Key Found : " << list[mid] << endl;
-			return;
+			left++; // left 의 값을 증가시킵니다.
 		}
-		else if (list[mid] > key)
+		// 6. right가 start 보다 크고 list[right] 가
+		// list[pivot] 보다 크거나 같을 떄 까지 반복합니다
+		while (right > start && list[pivot] <= list[right])
 		{
-			right = mid - 1;
+			right--; // right 의 값을 감소시킵니다.
+		}
+		if (left>right)
+		{
+			swap(list[pivot], list[right]);
 		}
 		else
 		{
-			left = mid + 1;
+			swap(list[left], list[right]);
+		}
+		if (left<right)
+		{
+			QuickSort(list,start,end);
+			QuickSort(list,start,end);
+		}
+		else
+		{
+			return;
 		}
 	}
 	
-	cout << "Cross over" << endl;
 }
 
 int main()
 {
-#pragma region 이진 탐색
-	// 탐색 범위를 반으로 나누어 찾는 값을 포함하는 범위를
-	// 좁혀 나가는 방식으로 동작하는 알고리즘 입니다.
+#pragma region 퀵 정렬
+	// 기준점을 획득한 다음 기준점을 기준으로 배열을 나누고 한 쪽에는
+	// 기준점보다 작은 값들이 위치하게 하고 다른 한 쪽에는 기준점보다 
+	// 큰 값들이 위치 하도록 정렬합니다.
 
-	// 1. List의 중간값을 지정한다.
-	// 2. list
-
-	int list[8] = { 5,6,11,13,27,55,66,99 };
+	// 나누어진 하위 배열에 대해 재귀적으로 퀵 정렬을 호출하여
+	// 모든 배열이 기본 배열이 될 때 까지 반복하면서 정렬하는 알고리즘입니다.
 	
-	binarySerach(list, 66);
+	// int left는 피벗보다 작으면 기준점을 왼쪽를 오른쪽 으로 이동  
+	// left는 피벗보다 값이 크면 멈춘다.
+	// int right는 피벗보다 값이 크면 오른쪽을 왼쪽으로 이동 
+	// right는 피벗보다 값이작으면 멈춘다. 
 
-	// int size = sizeof(list) / sizeof(int);
 
-	
+	int list[SIZE] = { 5,4,6,2,1,3 };
+
+	QuickSort(list,0,SIZE -1);
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << list[i] << " ";
+	}
 #pragma endregion
 
 	return 0;
