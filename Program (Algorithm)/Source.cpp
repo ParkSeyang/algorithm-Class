@@ -36,15 +36,13 @@ void QuickSort(int list[], int start, int end)
 		{
 			swap(list[left], list[right]);
 		}
-		if (left<right)
+		// 7. if문 하나 if문안에 바뀌는조건하나 재귀 두개 
+		if (left == right)
 		{
-			QuickSort(list,start,end);
-			QuickSort(list,start,end);
+			QuickSort(list,start,end - 1);
+			
 		}
-		else
-		{
-			return;
-		}
+		// return;
 	}
 	
 }
