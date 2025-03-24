@@ -9,7 +9,7 @@ void QuickSort(int list[], int start, int end)
 	// 1. pivot 변수 의 값을 설정합니다.
 	int pivot = start;
 	// 2. left 변수의 값을 설정합니다.
-	int left = start +1;
+	int left = start + 1;
 	// 3. right 변수의 값을 설정합니다.
 	int right = end;
 
@@ -37,12 +37,15 @@ void QuickSort(int list[], int start, int end)
 			swap(list[left], list[right]);
 		}
 		// 7. if문 하나 if문안에 바뀌는조건하나 재귀 두개 
-		if (left == right)
+		if (left < right) // 재귀호출을하여서 정렬을 반복한다.
 		{
-			QuickSort(list,start,end - 1);
-			
+			QuickSort(list, start, (left + right) / 2);
 		}
-		// return;
+		else
+		{
+			QuickSort(list, (left + right) / 2 + 1, end);
+			return;
+		}
 	}
 	
 }
