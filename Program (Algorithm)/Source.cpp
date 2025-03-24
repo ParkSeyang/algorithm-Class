@@ -1,79 +1,90 @@
 ﻿#include <iostream>
 
-#define SIZE 6
+#define SIZE 8
 
 using namespace std;
 
-void QuickSort(int list[], int start, int end)
+void merge_sort(int list[], int start, int end)
 {
-	// 1. pivot 변수 의 값을 설정합니다.
-	int pivot = start;
-	// 2. left 변수의 값을 설정합니다.
-	int left = start + 1;
-	// 3. right 변수의 값을 설정합니다.
-	int right = end;
-
-	// 4. left가 right보다 크거나 같을때 까지 반복합니다.
-	while (left <= right)
+	if (start < end)
 	{
-		// 5. left가 end 보다 작거나 같고 list[left]가
-		// list[pivot] 보다 작거나 같을 때 까지 반복합니다.
-		while (left <= end && list[pivot] >= list[left])
-		{
-			left++; // left 의 값을 증가시킵니다.
-		}
-		// 6. right가 start 보다 크고 list[right] 가
-		// list[pivot] 보다 크거나 같을 떄 까지 반복합니다
-		while (right > start && list[pivot] <= list[right])
-		{
-			right--; // right 의 값을 감소시킵니다.
-		}
-		if (left>right)
-		{
-			swap(list[pivot], list[right]);
-		}
-		else
-		{
-			swap(list[left], list[right]);
-		}
-		// 7. if문 하나 if문안에 바뀌는조건하나 재귀 두개 
-		if (left < right) // 재귀호출을하여서 정렬을 반복한다.
-		{
-			QuickSort(list, start, (left + right) / 2);
-		}
-		else
-		{
-			QuickSort(list, (left + right) / 2 + 1, end);
-			return;
-		}
+		int mid = (start + end) / 2;
+		merge_sort(list, mid + 1, end);
+		merge_sort(list, start, mid);
 	}
-	
+
+	return;
 }
 
-int main()
+void combine(int list[], int start, int mid, int end)
 {
-#pragma region 퀵 정렬
-	// 기준점을 획득한 다음 기준점을 기준으로 배열을 나누고 한 쪽에는
-	// 기준점보다 작은 값들이 위치하게 하고 다른 한 쪽에는 기준점보다 
-	// 큰 값들이 위치 하도록 정렬합니다.
+	int count = 0;
 
-	// 나누어진 하위 배열에 대해 재귀적으로 퀵 정렬을 호출하여
-	// 모든 배열이 기본 배열이 될 때 까지 반복하면서 정렬하는 알고리즘입니다.
+	int left = start + 1;
+
+	int right = mid + 1;
+
+	int* container = new int[end - start + 1];
+
+	// 2. 두 부분의 배열을 병합합니다.
+
+	while (left <= start && right <= mid)
+	{
+		if (list[left] <= list[right])
+		{
+			container[count++] = list[left++];
+		}
+		else
+		{
+			container[count++] = list[right++];
 	
-	// int left는 피벗보다 작으면 기준점을 왼쪽를 오른쪽 으로 이동  
-	// left는 피벗보다 값이 크면 멈춘다.
-	// int right는 피벗보다 값이 크면 오른쪽을 왼쪽으로 이동 
-	// right는 피벗보다 값이작으면 멈춘다. 
-
-
-	int list[SIZE] = { 5,4,6,2,1,3 };
-
-	QuickSort(list,0,SIZE -1);
-
+		}
+	}
 	for (int i = 0; i < SIZE; i++)
 	{
-		cout << list[i] << " ";
+		if (list[left] < list)
+		{
+			merge_sort(list, (left + mid), end);
+		}
+		else if (true)
+		{
+
+		}
+		else
+		{
+
+		}
 	}
+	// 작은값을 정렬해놓고 작은배열을 큰배열로만든곳에다가 비교해서 정렬하고 올린다.
+}
+
+	
+int main()
+{
+#pragma region 병합 정렬
+	// 하나의 리스트를 두 개의 균일한 크기로 분할하고 분할된
+	// 부분 리스트를 정렬한 다음, 두 개의 정렬된 부분 리스트를
+	// 합하여 전체가 정렬된 리스트가 되게 하는 방법입니다.
+
+	// 1. 리스트의 길이가 0 또는 1 이면 이미 정렬된 것으로 봅니다.
+
+	// 2. 그렇지 않은 경우
+
+	// 2-1. 정렬되지 않은 리스트를 절반으로 잘라 비슷한 크기의
+	//		두 부분을 리스트로 나눕니다.
+
+	// 2-2. 각 부분 리스트를 재귀적으로 병합 정렬을 이용하여 정렬합니다.
+
+	// 2-3. 두 부분 리스트를 다시 하나의 정렬된 리스트로 병합합니다.
+
+	int list[SIZE] = { 3,5,2,7,4,1,8,6};
+
+	//int mid 변수를만들어서 배열들을 하나가 될때까지 쪼갠다.
+	
+	merge_sort(list, 0, SIZE - 1);
+	
+
+	// 임시배열에있는것을 원본배열에넣어줘야한다
 #pragma endregion
 
 	return 0;
