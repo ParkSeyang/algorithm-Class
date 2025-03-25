@@ -16,7 +16,7 @@ void combine(int list[], int start, int mid, int end)
 
 	// 2. 두 부분의 배열을 병합합니다.
 
-	while (left <= start && right <= mid)
+	while (left <= mid && right <= end)
 	{
 		if (list[left] <= list[right])
 		{
@@ -39,15 +39,16 @@ void combine(int list[], int start, int mid, int end)
 
 	// 원본 배열에 정렬된 임시 배열의 값을 복사합니다.
 
-	for (int i = 0; i < end - start + 1; i++)
-	{
-		list[start + i] = container[i];
-	}
-
-	// for (int i = start; i <= end; i++)
-	// {
-	// 	list[i] = container[count++];
-	// }
+	 for (int i = 0; i < end - start + 1; i++)
+	 {
+	 	list[start + i] = container[i];
+	 }
+	// 예제 2
+	// count = 0;
+	//  for (int i = start; i <= end; i++)
+	//  {
+	//  	list[i] = container[count++];
+	//  }
 	delete[] container;
 	// 작은값을 정렬해놓고 작은배열을 큰배열로만든곳에다가 비교해서 정렬하고 올린다.
 }
@@ -59,9 +60,9 @@ void merge_sort(int list[], int start, int end)
 	if (start < end)
 	{
 		int mid = (start + end) / 2;
-		merge_sort(list, mid + 1, end);
 		merge_sort(list, start, mid);
-
+		merge_sort(list, mid+1, end);
+	
 		combine(list, start, mid, end);
 	}
 

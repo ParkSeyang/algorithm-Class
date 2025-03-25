@@ -6,40 +6,39 @@ using namespace std;
 
 int Fibonacci(int n)
 {
-	int list[1];
-
-	 if (n<= 0)
-	 {
-	 	return 0;
-	 }
-	 
-	 else if (n <= 2)
-	 {
-	 	return 1;
-	 }
-	 return Fibonacci(n - 1) + Fibonacci(n - 2);
-
-	 for (int i = 0; i < n; i++)
-	 {
-		 list[i] = Fibonacci(n - i);
-
-			 if (list[i] == Fibonacci(n-i))
-			 {
-				 return Fibonacci(n - i);
-			 }
-	 }
-	// if (n == 0)
+	// 재귀함수로 만든 시간복잡도 O(n₂) 의 피보나치 수열
+	// if (n<= 0)
 	// {
 	// 	return 0;
 	// }
-	// if (n == 1 || n == 2)
+	// 
+	// else if (n <= 2)
 	// {
 	// 	return 1;
 	// }
+	// return Fibonacci(n - 1) + Fibonacci(n - 2);
 
-	 
+	int Result = 0;
+	int* list = new int[n + 1];
+	if (n == 0 || n == 1)
+	{
+		return n;
+	}
+
+
+	list[0] = 0;
+	list[1] = 1;
+
+	 for (int i = 2; i <= n; i++)
+	 {
+		 list[i] = Fibonacci(i - 1) + Fibonacci(i - 2);
+	 }
+
+	 Result = list[n];
+
+	 delete[] list;
 	
-
+	 return Result;
 }
 int main()
 {
@@ -61,9 +60,9 @@ int main()
 	// 반복 수행하는 작업을 제거하여 프로그램의 실행 속도를
 	// 향상시키는 방법입니다.
 
-	int list[SIZE] = {};
+	// int list[SIZE] = {};
 
-	cout << Fibonacci(45) << endl;
+	cout << Fibonacci(40)
 
 #pragma endregion
 

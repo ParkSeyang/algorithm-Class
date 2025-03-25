@@ -7,6 +7,9 @@
       "RelativeMoniker": "D:0:0:{3057872C-B413-4F0E-BB74-134CBD8600C2}|Program (Algorithm).vcxproj|solutionrelative:Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{51213304-B3EB-4E8E-A257-072EAE6A22E5}|..\\Class 12th (Merge Sort)\\Class 12th (Merge Sort).vcxproj|C:\\Users\\Administrator\\Desktop\\algorithm-Class\\Class 12th (Merge Sort)\\Class 12th (Merge Sort).cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E52B3365-56FC-4E05-9766-84856F720E77}|..\\Class 9th (Divide and Conquer)\\Class 9th (Divide and Conquer).vcxproj|C:\\Users\\Administrator\\Desktop\\algorithm-Class\\Class 9th (Divide and Conquer)\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -26,11 +29,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Class 12th (Merge Sort).cpp",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\algorithm-Class\\Class 12th (Merge Sort)\\Class 12th (Merge Sort).cpp",
+              "RelativeDocumentMoniker": "..\\Class 12th (Merge Sort)\\Class 12th (Merge Sort).cpp",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\algorithm-Class\\Class 12th (Merge Sort)\\Class 12th (Merge Sort).cpp",
+              "RelativeToolTip": "..\\Class 12th (Merge Sort)\\Class 12th (Merge Sort).cpp",
+              "ViewState": "AgIAABMAAAAAAAAAAAAMwCoAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-25T11:04:01.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\algorithm-Class\\Class 8th (Count Sort)\\Source.cpp",
               "RelativeDocumentMoniker": "..\\Class 8th (Count Sort)\\Source.cpp",
@@ -42,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\algorithm-Class\\Class 9th (Divide and Conquer)\\Source.cpp",
               "RelativeDocumentMoniker": "..\\Class 9th (Divide and Conquer)\\Source.cpp",
@@ -54,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Source.cpp",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\algorithm-Class\\Class 7th (Sieve of Eratosthenes)\\Source.cpp",
               "RelativeDocumentMoniker": "..\\Class 7th (Sieve of Eratosthenes)\\Source.cpp",
@@ -66,7 +82,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Sorce.cpp",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\algorithm-Class\\Class 1th (Time Complexity \u0026 Space Complexity)\\Sorce.cpp",
               "RelativeDocumentMoniker": "..\\Class 1th (Time Complexity \u0026 Space Complexity)\\Sorce.cpp",
@@ -84,7 +100,7 @@
               "RelativeDocumentMoniker": "Source.cpp",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\algorithm-Class\\Program (Algorithm)\\Source.cpp",
               "RelativeToolTip": "Source.cpp",
-              "ViewState": "AgIAACIAAAAAOuUYa5wowCwAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-13T09:12:19.673Z",
               "EditorCaption": ""
