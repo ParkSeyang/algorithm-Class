@@ -37,24 +37,22 @@ void combine(int list[], int start, int mid, int end)
 		else
 		{
 			container[count++] = list[right++];
-	
 		}
 	}
-	for (int i = 0; i < SIZE; i++)
+	while(left <= mid)
 	{
-		if (list[left] < list)
-		{
-			merge_sort(list, (left + mid), end);
-		}
-		else if (true)
-		{
-
-		}
-		else
-		{
-
-		}
+		container[count++] = list[left++];
 	}
+	while(right <= end)
+	{
+		container[count++] = list[right++];
+	}
+
+	for (int i = start; i <= end; i++)
+	{
+		list[i] = container[count++];
+	}
+	delete[] container;
 	// 작은값을 정렬해놓고 작은배열을 큰배열로만든곳에다가 비교해서 정렬하고 올린다.
 }
 
@@ -83,6 +81,10 @@ int main()
 	
 	merge_sort(list, 0, SIZE - 1);
 	
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << list[i] << " ";
+	}
 
 	// 임시배열에있는것을 원본배열에넣어줘야한다
 #pragma endregion
