@@ -1,2 +1,3 @@
 ﻿  Source.cpp
+C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(38,1): warning C4172: 지역 변수 또는 임시 : count의 주소를 반환하는 중
   Program (Algorithm).vcxproj -> C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\x64\Debug\Program (Algorithm).exe

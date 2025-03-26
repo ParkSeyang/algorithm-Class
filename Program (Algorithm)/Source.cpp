@@ -35,7 +35,7 @@ const int & Greedy(int n)
 		}
 		
 	}
-	return;
+	return count;
 }
 
 int main()
