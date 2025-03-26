@@ -1,2 +1,5 @@
 ﻿  Source.cpp
-  Program (Algorithm).vcxproj -> C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\x64\Debug\Program (Algorithm).exe
+C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(38,2): error C2561: 'Greedy': 함수는 값을 반환해야 합니다.
+  C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(5,13):
+  'Greedy' 선언을 참조하십시오.
+  
