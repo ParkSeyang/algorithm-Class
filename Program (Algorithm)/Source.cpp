@@ -4,7 +4,9 @@
 
 using namespace std;
 
-int Fibonacci(int n)
+// list[SIZE] = {0,1}  정적배열로도 참조 가능함.
+
+int Fibonacci(int list[] , int n)
 {
 	// 재귀함수로 만든 시간복잡도 O(n₂) 의 피보나치 수열
 	// if (n<= 0)
@@ -18,27 +20,22 @@ int Fibonacci(int n)
 	// }
 	// return Fibonacci(n - 1) + Fibonacci(n - 2);
 
-	int Result = 0;
-	int* list = new int[n + 1];
-	if (n == 0 || n == 1)
-	{
-		return n;
-	}
-
-
 	list[0] = 0;
 	list[1] = 1;
 
-	 for (int i = 2; i <= n; i++)
-	 {
-		 list[i] = Fibonacci(i - 1) + Fibonacci(i - 2);
-	 }
-
-	 Result = list[n];
-
-	 delete[] list;
-	
-	 return Result;
+	if (n == 0 || n == 1) // n의값이 0과 같거나 1과같다면 n값을 리턴시킨다.
+	{
+		return n;
+	}
+	else if (list[n] != 0) // 안에 이미 계산된 값이있다면 그값을 리턴시킨다.
+	{
+		return list[n];
+	}
+	for (int i = 2; i <= n; i++)
+	{
+		list[i] = list[i - 1] + list[i - 2];
+	}
+	return list[n];
 }
 int main()
 {
@@ -60,9 +57,9 @@ int main()
 	// 반복 수행하는 작업을 제거하여 프로그램의 실행 속도를
 	// 향상시키는 방법입니다.
 
-	// int list[SIZE] = {};
+	int list[SIZE] = {};
 
-	cout << Fibonacci(40)
+	cout <<" 피보나치의 수열 값: " << Fibonacci(list,40) << endl;
 
 #pragma endregion
 
