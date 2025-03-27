@@ -1,93 +1,90 @@
 ﻿#include <iostream>
+#include <vector>
+
+#define SIZE 8
 
 using namespace std;
 
-const int & Greedy(int n)
+class Node
 {
-	int count = 0;
+private:
+	bool visited[SIZE];
+	vector<int> adjacencyList[SIZE];
+public:
 
-	while (n >= 10)
+	Node()
 	{
-		if (n >= 1000)
+		for (int i = 0; i < SIZE; i++)
 		{
-			n -= 1000;
-			count++;
+			visited[i] = false;
 		}
-		else if(n >= 500)
+	}
+
+	void Insert(int i, int j)
+	{
+		adjacencyList[i].push_back(j);
+		adjacencyList[j].push_back(i);
+	}
+	void Search(int start)
+	{
+		int next = start + 1;
+		if (visited == false)
 		{
-			n -= 500;
-			count++;
+			for (i = 1; i < SIZE; i++)
+			{
+				visited[i] = true;
+				Search(start[i+1]);
+			}
 		}
-		else if (n >= 100)
+		for (int i = 0; i < SIZE; i++)
 		{
-			n -= 100;
-			count++;
-		}
-		else if (n >= 50)
-		{
-			n -= 50;
-			count++;
-		}
-		else if(n >= 10)
-		{
-			n -= 10;
-			count++;
+			if (visited[i] == true)
+			{
+				return adjacencyList[i].pop_back();
+			}
 		}
 		
+
+	// 값이 대입되면 visited 배열 값에 true 를 넣어준다
+		// 1에서 부터시작된 값은 자신과 가장인접한 노드로 이동한다.
+		// 노드중에서 방문되지않은노드가있다면 방문을 하고 만약 방문을햇다면 종료하면서 하나씩 값을뺍니다.
 	}
-	return count;
-}
+};
+
 
 int main()
 {
-#pragma region 탐욕법
-	// 최적의 해를 구하는 데에 사용되는 근사적인 방법으로
-	// 여러 경우 중 하나를 검색해야 할 때마다 그 순간에
-	// 최적이라고 생각되는 것을 선택해 나가는 방식으로 진행하여
-	// 최종적인 해답을 구하는 알고리즘입니다.
+#pragma region 깊이 우선 탐색 (Depth First Search)
 
-	// 1. 탐욕 선택 속성
-	// 각 단계에서 '최적의 선택' 을 했을 때 전체 문제에 대한
-	// 최적의 해를 구할 수 있는 경우입니다.
+	// root 노드에서 부터 다음 분기로 다음 분기로 넘어가기 전에
+	// 해당 분기를 완벽하게 탐색하는 방법입니다.
 
-	// 2. 최적 부분 구조
-	// 전체 문제의 최적의 해가 '부분 문제의 최적의 해로 구성'될
-	// 수 있는 경우입니다.
+	// 깊이 우선 탐색은 자료 구조 (Stack) 을 활용합니다.
 
-	// 그리디 알고리즘단계
+	// 1. 시작 노드를 스택에 넣고 방문 처리를 합니다.
 
-	// 1. 문제의 최적 부분 구조를 결정합니다.
+	// 2. 스택의 최상단 노드에 방문하지 않은 인접 노드가
+	//    있으면 그 노드를 스택에 넣고 방문 처리합니다.
 
-	// 2. 문제의 구조에 맞게 선택 절차를 정의합니다.
+	// 3. 방문하지 않은 인접 노드가 없으면 스택에서 최상단에
+	//    있는 노드를 꺼냅니다.
 
-	// 3. 선택 절차에 따라 선택을 수행합니다.
+	// 4. 더 이상 2번의 과정을 수행할 수 없을 때 까지 반복합니다.
 
-	// 4. 선택된 해가 문제의 조건을 만족하는 지 검사합니다.
+	Node node;
 	
-	// 5. 조건을 만족하지 않으면 해당 해를 제외합니다.
+	node.Insert(1, 2);
+	node.Insert(1, 3);
 
-	// 6. 모든 선택이 완료되면 해답을 검사합니다.
+	node.Insert(2, 2);
+	node.Insert(2, 4);
+	node.Insert(2, 5);
 
-	// 7. 조건을 만족하지 않으면 해답으로 인정되지 않습니다.
+	node.Insert(3, 6);
+	node.Insert(3, 7);
 
-
-	// 강사님이 설명해준 간편 탐욕 알고리즘으로 문제를 해결하는 방법
-
-	// 1. 선택 절차(Selection Procedure)
-	// 현재 상태에서의 최적의 해답을 선택합니다.
-
-	// 2. 적절성 검사 (Feasibility Check)
-	// 선택된 해가 문제의 조건을 만족하는지 검사합니다.
-
-	// 3. 해답 검사 (Solution Check)
-	// 원래의 문제가 해결되었는지 검사하고, 해결되지
-	// 않았다면 선택 절차로 돌아가 위의 과정을 반복합니다.
-
-
-	int money = 1370;
-
-	cout << Greedy(money) << endl;
-
+	node.Insert(4, 5);
+	node.Insert(6, 7);
 #pragma endregion
 
 	return 0;
