@@ -27,22 +27,15 @@ public:
 	}
 	void Search(int start)
 	{
-		int next = start + 1;
-		if (visited == false)
-		{
-			for (i = 1; i < SIZE; i++)
-			{
-				visited[i] = true;
-				Search(start[i+1]);
-			}
-		}
+		visited[start] = true;
 		for (int i = 0; i < SIZE; i++)
 		{
-			if (visited[i] == true)
+			if (visited != NULL)
 			{
-				return adjacencyList[i].pop_back();
+				adjacencyList[start]???
 			}
 		}
+	
 		
 
 	// 값이 대입되면 visited 배열 값에 true 를 넣어준다
