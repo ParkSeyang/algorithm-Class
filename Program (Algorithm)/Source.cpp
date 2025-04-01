@@ -25,12 +25,10 @@ public:
 	void insert(int vertex, int edge)
 	{
 		adjacencyList[vertex].push_back(edge);
-		degree[edge++];	
+		degree[edge]++;	
 	}
 	void sort()
 	{
-		
-	
 		for (int i = 1; i < SIZE; i++)
 		{
 			if (degree[i] == 0) // 진입 차수가 0인 노드를 Queue에 넣는다.
@@ -38,15 +36,26 @@ public:
 				queue.push(i);
 			}
 
-			int print = queue.front();
+			while (!queue.empty())
+			{
+				int print = queue.front();
 
-			queue.pop();
+				queue.pop();
 
-			cout << print << " ";
+				cout << print << " ";
+				for (int next: adjacencyList[print])
+				{
+					degree[next]--;
+					if (degree[next] == 0 )
+					{
+						queue.push(next);
+					}
 
+				}
+			}
+			
 		}
 				
-
 	}
 };
 
@@ -88,7 +97,10 @@ int main()
 
 	graph.insert(6, 7);
 
+	cout << " 위상 정렬 결과 :";
 	graph.sort();
+
+
 
 	return 0;
 }

@@ -1,12 +1,2 @@
 ﻿  Source.cpp
-C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(31,15): error C2446: '==': 'int'에서 'bool [8]'(으)로 변환되지 않았습니다.
-      C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(31,18):
-      정수 계열 형식에서 포인터 형식으로 변환하려면 reinterpret_cast, C 스타일 캐스트 또는 괄호가 있는 함수 스타일 캐스트가 필요합니다.
-  
-C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(33,9): error C2065: 'i': 선언되지 않은 식별자입니다.
-C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(33,16): error C2065: 'i': 선언되지 않은 식별자입니다.
-C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(33,26): error C2065: 'i': 선언되지 않은 식별자입니다.
-C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(35,13): error C2065: 'i': 선언되지 않은 식별자입니다.
-C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(36,18): error C2065: 'i': 선언되지 않은 식별자입니다.
-C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(36,21): error C7732: expected an expression before ']'
-C:\Users\Administrator\Desktop\algorithm-Class\Program (Algorithm)\Source.cpp(36,21): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+  Program (Algorithm).vcxproj -> C:\Users\ghlwk_sc7hq61\OneDrive\Desktop\게임 프로그래밍 개발자 수업 과정\algorithm-Class\Program (Algorithm)\x64\Debug\Program (Algorithm).exe
