@@ -28,8 +28,7 @@ void Union(int x, int y)
 {
 	x = find(x);
 	x = find(y);
-	int index = 0;
-
+	
 	if (x == y)
 	{
 		return;
@@ -47,15 +46,24 @@ void Union(int x, int y)
 
 bool same(int x, int y)
 {
-	
-	if (x == y)
-	{
-		return true;
-	}
-	else
+	// 1번
+	if (find(parent[x]) != find(parent[y]))
 	{
 		return false;
 	}
+	else if (find(parent[x]) == find(parent[y]))
+	{
+		return true;
+	}
+	// 2번
+	// if (find(x) != find(y))
+	// {
+	// 	return false;
+	// }
+	// else if (find(x) == find(y))
+	// {
+	// 	return true;
+	// }
 	//find 함수가 같다면 true를 출력하게한다.
 }
 
@@ -71,11 +79,18 @@ int main()
 
 	// int parent[SIZE] = {};
 
-	find(0);
+	find(1);
 
 	Union(0, 1);
+	Union(1, 2);
+	Union(3, 4);
+	Union(4, 5);
+
+	same(1, 2);
 
 
+	cout << "0과 1은 연결되어있나? " << same(0, 1) << endl;
+	cout << "0과 4은 연결되어있나? " << same(0, 4) << endl;
 	for (int i = 0; i < SIZE; i++)
 	{
 		parent[i] = i;
