@@ -1,5 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
+#include <algorithm>
+
 #define SIZE 8
 
 using namespace std;
@@ -15,18 +17,38 @@ private:
 		int weight;
 		
 	public:
-		Edge(int VertexX, int VertexY,int weight)
+		Edge(int vertexX, int vertexY,int weight)
 		{
-			this->vertexX = VertexX;
-			this->vertexY = VertexY;
+			this->vertexX = vertexX;
+			this->vertexY = vertexY;
 			this->weight = weight;
 			
 		}
-		
+		const int& VertexX()
+		{
+			return vertexX;
+		}
+
+		const int & VertexY()
+		{
+			return vertexY;
+		}
+
+		const int& Weight()
+		{
+			return weight;
+		}
+
+		const bool& operator < (const Edge& edge)
+		{
+			return weight < edge.weight;
+		}
 	};
 	int cost;
 	int parent[SIZE];
+
 	vector<Edge> nodeList;
+
 public:
 	Kruskal()
 	{
@@ -36,14 +58,88 @@ public:
 			parent[i] = i;
 		}
 	}
+	int find(int x) // 유니온 파인드 
+	{
+		// 배열의 인덱스와 값이 같다면 Root Node 발견
+		if (x == parent[x])
+		{
+			return x;
+		}
+		else
+		{
+			// 부모노드의 번호를 전달하면서, Root Node를 찾을 때까지 
+			// 재귀 호출을 반복합니다.
+			return parent[x] = find(parent[x]);
+		}
+	}
 
-	void insert(int x, int y, int weight)
+	// 값을 부른후에 부모노드(0번째인덱스)의 값을 자식노드의 값에 갱신합니다.
+	void Union(int x, int y) // 유니온 파인드 
+	{
+		x = find(x);
+		y = find(y);
+
+		if (x == y)
+		{
+			return;
+		}
+
+		if (x < y)
+		{
+			parent[y] = x;
+		}
+		else
+		{
+			parent[x] = y;
+		}
+	}
+
+	bool same(int x, int y) // 유니온 파인드 
+	{
+		// 1번
+		if (find(parent[x]) != find(parent[y]))
+		{
+			return false;
+		}
+		else if (find(parent[x]) == find(parent[y]))
+		{
+			return true;
+		}
+		// 2번 좀더 가독성을 높인 코드 
+		// return find(x) == find(y);
+		// 
+		// 3번 테스트안해본코드
+		// if (find(x) != find(y))
+		// {
+		// 	return false;
+		// }
+		// else if (find(x) == find(y))
+		// {
+		// 	return true;
+		// }
+		//find 함수가 같다면 true를 출력하게한다.
+	}
+
+	void calcullate()
+	{
+		sort(nodeList.begin(), nodeList.end());
+
+		for (int i = 0; i < nodeList.size(); i++)
+		{
+			if (same(nodeList[i].VertexX(), nodeList[i].VertexY()) == false)
+			{
+				cost += nodeList[i].Weight();
+
+				Union(nodeList[i].VertexX(), nodeList[i].VertexY());
+			}
+		}
+		cout << "Cost : " << cost << endl;
+	}
+	void insert(int vertexX, int vertexY, int weight)
 	{
 		Edge edge(vertexX, vertexY, weight);
 		nodeList.push_back(edge);
-
 	}
-
 };
 
 
@@ -56,20 +152,25 @@ int main()
 
 	// 그래프의 정점의 수가 n개일 때, 간선의 수는 n-1개 입니다.
 
-	Kruskal kruskal
+	Kruskal kruskal;
 
 	kruskal.insert(1, 7, 10);
 	kruskal.insert(4, 7, 14);
+
 	kruskal.insert(1, 4, 30);
 	kruskal.insert(2, 4, 25);
+
 	kruskal.insert(1, 2, 64);
 	kruskal.insert(1, 5, 19);
 
 	kruskal.insert(5, 7, 73);
 	kruskal.insert(2, 5, 61);
-	kruskal.insert(1, 7, );
-	kruskal.insert(1, 7, 10);
-	kruskal.insert(1, 7, 10);
+
+	kruskal.insert(5, 3, 22);
+	kruskal.insert(5, 6, 48);
+	kruskal.insert(3, 6, 36);
+
+	kruskal.calcullate();
 
 #pragma endregion
 
