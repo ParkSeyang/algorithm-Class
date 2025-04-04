@@ -1,177 +1,82 @@
 ﻿#include <iostream>
-#include <vector>
-#include <algorithm>
 
-#define SIZE 8
+#define SIZE 6
+#define INFINITY 10000000
 
 using namespace std;
 
-class Kruskal
+class Dijkstra
 {
 private:
-	class Edge
+	int node[SIZE][SIZE] =
 	{
-	private:
-		int vertexX;
-		int vertexY;
-		int weight;
-		
-	public:
-		Edge(int vertexX, int vertexY,int weight)
-		{
-			this->vertexX = vertexX;
-			this->vertexY = vertexY;
-			this->weight = weight;
-			
-		}
-		const int& VertexX()
-		{
-			return vertexX;
-		}
-
-		const int & VertexY()
-		{
-			return vertexY;
-		}
-
-		const int& Weight()
-		{
-			return weight;
-		}
-
-		const bool& operator < (const Edge& edge)
-		{
-			return weight < edge.weight;
-		}
+		{0,2,5,1,INFINITY,INFINITY},
+		{2,0,3,2,INFINITY,INFINITY},
+		{5,3,0,3,1,5},
+		{1,2,3,0,1,INFINITY},
+		{INFINITY,INFINITY,1,1,0,2},
+		{INFINITY,INFINITY,5,INFINITY,2,0},
 	};
-	int cost;
-	int parent[SIZE];
-
-	vector<Edge> nodeList;
-
+	int distance[SIZE];
+	bool visited[SIZE];
 public:
-	Kruskal()
+	Dijkstra()
 	{
-		cost = 0;
 		for (int i = 0; i < SIZE; i++)
 		{
-			parent[i] = i;
+			visited[i] = false;
+			distance[i] = 0;
 		}
 	}
-	int find(int x) // 유니온 파인드 
+	const int& Find()
 	{
-		// 배열의 인덱스와 값이 같다면 Root Node 발견
-		if (x == parent[x])
+		for (int i = 0; i < SIZE; i++)
 		{
-			return x;
-		}
-		else
-		{
-			// 부모노드의 번호를 전달하면서, Root Node를 찾을 때까지 
-			// 재귀 호출을 반복합니다.
-			return parent[x] = find(parent[x]);
-		}
-	}
-
-	// 값을 부른후에 부모노드(0번째인덱스)의 값을 자식노드의 값에 갱신합니다.
-	void Union(int x, int y) // 유니온 파인드 
-	{
-		x = find(x);
-		y = find(y);
-
-		if (x == y)
-		{
-			return;
-		}
-
-		if (x < y)
-		{
-			parent[y] = x;
-		}
-		else
-		{
-			parent[x] = y;
-		}
-	}
-
-	bool same(int x, int y) // 유니온 파인드 
-	{
-		// 1번
-		if (find(parent[x]) != find(parent[y]))
-		{
-			return false;
-		}
-		else if (find(parent[x]) == find(parent[y]))
-		{
-			return true;
-		}
-		// 2번 좀더 가독성을 높인 코드 
-		// return find(x) == find(y);
-		// 
-		// 3번 테스트안해본코드
-		// if (find(x) != find(y))
-		// {
-		// 	return false;
-		// }
-		// else if (find(x) == find(y))
-		// {
-		// 	return true;
-		// }
-		//find 함수가 같다면 true를 출력하게한다.
-	}
-
-	void calcullate()
-	{
-		sort(nodeList.begin(), nodeList.end());
-
-		for (int i = 0; i < nodeList.size(); i++)
-		{
-			if (same(nodeList[i].VertexX(), nodeList[i].VertexY()) == false)
+			if (distance[i] == Find())
 			{
-				cost += nodeList[i].Weight();
-
-				Union(nodeList[i].VertexX(), nodeList[i].VertexY());
+				return true;
+			}
+			else if (distance[i] != Find())
+			{
+				return false;
 			}
 		}
-		cout << "Cost : " << cost << endl;
 	}
-	void insert(int vertexX, int vertexY, int weight)
+	void calculate(int start)
 	{
-		Edge edge(vertexX, vertexY, weight);
-		nodeList.push_back(edge);
+		
 	}
-};
 
+};
 
 
 int main()
 {
-#pragma region 최소 신장 트리
-	// 그래프의 모든 정점을 포함하면서 사이클이 존재하지 않는
-	// 부분 그래프로, 그래프의 모든 정점을 최소 비용으로 연결하는 트리입니다.
+#pragma region 다익스트라 알고리즘
+	// 시적점으로부터 모든 노드까지의 최소 거리를 구해주는
+	// 알고리즘 입니다.
+	// 가중치 그래프를 활용합니다.
+	// 
+	// 1. 거리 배열에 weight[시작 노드]의 값들로 초기화 합니다.
 
-	// 그래프의 정점의 수가 n개일 때, 간선의 수는 n-1개 입니다.
+	// 2. 시작점을 방문 처리합니다.
 
-	Kruskal kruskal;
+	// 3. 거리 배열에서 최소 비용 노드를 찾고 방문 처리합니다.
+	//    단, 이미 방문한 노드는 제외합니다.
 
-	kruskal.insert(1, 7, 10);
-	kruskal.insert(4, 7, 14);
+	// 4. 최소 비용 노드를 거쳐갈 지 고민해서 거리 배열을 갱신합니다.
+	//    단, 이미 방문한 노드는 제외합니다.
 
-	kruskal.insert(1, 4, 30);
-	kruskal.insert(2, 4, 25);
+	// 5. 모든 노드를 방문할 때까지 3번 ~ 4번을 반복합니다.
 
-	kruskal.insert(1, 2, 64);
-	kruskal.insert(1, 5, 19);
+	// 방문하지 않은 노드 중에서 가장 작은 거리를 가진 노드를
+	// 방문하고, 그 노드와 연결된 다른 노드까지의 거리를 계산합니다.
+	
+	Dijkstra dijkstra;
 
-	kruskal.insert(5, 7, 73);
-	kruskal.insert(2, 5, 61);
+	
 
-	kruskal.insert(5, 3, 22);
-	kruskal.insert(5, 6, 48);
-	kruskal.insert(3, 6, 36);
-
-	kruskal.calcullate();
-
+	
 #pragma endregion
 
 	return 0;
