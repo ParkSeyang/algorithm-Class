@@ -30,21 +30,57 @@ public:
 	}
 	const int& Find()
 	{
+		int min = INFINITY;
+		int index = -1;
 		for (int i = 0; i < SIZE; i++)
 		{
-			if (distance[i] == Find())
+			if (!visited[i] && distance[i] < min)
 			{
-				return true;
-			}
-			else if (distance[i] != Find())
-			{
-				return false;
+				min = distance[i];
+				index = i;
 			}
 		}
+		
+		return index;
 	}
 	void calculate(int start)
 	{
-		
+		for (int i = 0; i < SIZE; i++)
+		{
+			distance[i] = node[start][i];
+		}
+		visited[start] = true;
+
+		for (int count = 0; count < SIZE - 1; count++)
+		{
+			int next = Find();
+			if (next == -1)
+			{
+				break;
+			}
+			visited[next] = true;
+
+			for (int i = 0; i < SIZE; i++)
+			{
+				if (!visited[i])
+				{
+					if (distance[i]>distance[next] + node[next][i])
+					{
+						distance[i] = distance[next] + node[next][i];
+					}
+				}
+			}
+		}
+
+		cout << "최단 거리 출력:" << endl;
+		for (int i = 0; i < SIZE; i++)
+		{
+			if (distance[i] == INFINITY)
+				cout << i << ": INF" << endl;
+			else
+				cout << i << ": " << distance[i] << endl;
+		}
+
 	}
 
 };
@@ -73,9 +109,8 @@ int main()
 	// 방문하고, 그 노드와 연결된 다른 노드까지의 거리를 계산합니다.
 	
 	Dijkstra dijkstra;
-
+	dijkstra.calculate(0);
 	
-
 	
 #pragma endregion
 
