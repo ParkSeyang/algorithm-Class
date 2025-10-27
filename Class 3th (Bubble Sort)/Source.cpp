@@ -10,7 +10,6 @@ int main()
 	// 서로 인접한 두 원소를 비교하여 정렬하는 알고리즘입니다.
 
 	int index[SIZE] = { 100,85,45,35,15 };
-	int swap = 0;
 
 	for (int i = 0; i < SIZE - 1; i++)
 	{
